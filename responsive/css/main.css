@@ -1,0 +1,57 @@
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+}
+
+h1 {
+    font-weight: 100;
+    font-size: 60px;
+    margin: 0;
+    padding-top: 100px;
+
+}
+
+
+
+header {
+    background-image: linear-gradient(to bottom, #777, #555);
+
+    
+    color: #FFFFFF
+}
+
+.container {
+    max-width: 1170px;
+    margin: 0 auto;
+    
+}
+
+svg {
+    /*fill: #A55555;*/
+    width: 40px;
+    padding-top:10px;
+    margin: 5px;
+    
+}
+
+.col {
+    margin:5px;
+    padding: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color:black;
+}
+
+@media (min-width: 768px) {
+    header {
+        background-image: url(../img/banner.jpg);
+        background-size: cover;
+        background-position: center;
+    }
+    .row {
+        display: flex;
+    }
+
+    .col {
+        flex-grow: 1;
+    }
+}
