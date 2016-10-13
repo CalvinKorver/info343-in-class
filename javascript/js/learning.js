@@ -16,6 +16,7 @@ This switches the interpreter in to strict mode,
 which disables various language features that make
 it really easy to introduce mistakes.
 */
+
 "use strict";
 
 ///////////////////////////////////////////////////////////
@@ -42,6 +43,8 @@ console.group("PRACTICE: Variables and Basic Types");
 //currently held in the variable `x`, and write the value
 //of `y` to the console log
 
+var y = x;
+console.log("Value of y:",y)
 
 //now assign `y` the numeric value 10
 //what does x contain now? Write it to the console
@@ -79,10 +82,16 @@ console.group("PRACTICE: Strings");
 //and assign it the concatenation of `s2` and `s3`
 //then write it to the console so you can verify it worked.
 
+var s2 = "hi";
+var s3 = "mom";
+var s4 = s2+s3;
+console.log(s4)
 
 //use the `.trim()` method to remove the leading and
 //trailing white space from this string
 var withSpaces = "    trim those spaces!     ";
+var trimmedString  = withSpaces.trim();
+console.log(trimmedString);
 
 
 console.groupEnd();
@@ -158,9 +167,16 @@ console.group("PRACTICE: Objects");
 //now try adding a property named `web site` (with a space)
 //setting it to some string value...it's tricky...
 
+var course2 = {
+    curriculum: "CSE",
+    number: "373",
+    name: "Data Structures",
+    section: "B",
+    quarter: 1,
+    fun: true
+};
 
-
-
+console.log(course2);
 console.groupEnd();
 
 ///////////////////////////////////////////////////////////
@@ -199,6 +215,9 @@ console.group("PRACTICE: Arrays");
 //create another array of playing card suits
 //(clubs, diamonds, hearts, spades)
 
+var suits =  ["clubs", "diamonds", "hearts", "spades"];
+suits.push("jokers");
+console.log(suits[suits.length - 1]);
 
 //then add a new element named "jokers"
 //afer adding it, access it in the array
@@ -344,6 +363,18 @@ console.group("PRACTICE: Functions");
 //with various numbers to test it.
 
 
+function returnMin(n1, n2) {
+    if (n1 < n2 || n1 == n2) {
+        return n1;
+    } else if (n2 < n1) {
+        return n2;
+    } else {
+        return null;
+    }
+}
+
+console.log(returnMin(4,6));
+
 console.groupEnd();
 
 ///////////////////////////////////////////////////////////
@@ -415,6 +446,17 @@ function generateRandomNumbers(howMany, minimum, maximum) {
     }
     return randNums;
 }
+
+
+function genArr() {
+    var randoms = generateRandomNumbers(10,0,100);
+    randoms.forEach(function(currentValue), thisValue);
+
+
+    return randoms;
+}
+
+console.log(genArr());
 
 //>>> your code goes here!
 
