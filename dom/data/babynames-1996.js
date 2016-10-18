@@ -1,3 +1,5 @@
+// Baby names are stored as an array with objects within. Each one of these objects has "name, "sex", and "count" as a number.
+
 var BABYNAMES = [
     {
         "name": "Aadam",
