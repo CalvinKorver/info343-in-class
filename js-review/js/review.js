@@ -190,6 +190,9 @@ console.log("property names:", propNames);
  * see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
  */
 
+propNames.forEach(function(element) {
+    console.log(element, " = ", course[element]);
+});
 
 
 
@@ -350,6 +353,16 @@ console.log("Total count", formatAsNumber(totalCount));
  * a comma, delimited list. To sort descending,
  * just reverse the logic in your compare function.
  */
+
+males.sort(function(a, b) {
+    return b.count - a.count;
+});
+
+var mostPopularRecs = males.slice(0, 10);
+var mostPopularNames = males.map(function(rec) {
+    return rec.name;
+});
+
 
 
 
