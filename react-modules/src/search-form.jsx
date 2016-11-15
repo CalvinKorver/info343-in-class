@@ -1,5 +1,5 @@
 import React from "react";
-
+const wellStyles = {maxWidth: 400, margin: '0 auto 10px'};
 /**
  * SearchForm - implements a simple search form
  * This is a reusable React component that will
@@ -11,6 +11,7 @@ import React from "react";
  * callback function.
  */
 export default class extends React.Component {
+    
     constructor(props) {
         super(props);
         this.state = {query: ""};
@@ -26,6 +27,8 @@ export default class extends React.Component {
             this.props.onSearch(this.state.query);
         }
     }
+
+    
 
     render() {
         return (
@@ -45,6 +48,12 @@ export default class extends React.Component {
                         </button>
                     </span>
                 </div>
+                <div className="well" style={wellStyles}>
+    <button bsStyle="primary" bsSize="large" block>Block level button</button>
+    <button bsSize="large" block>Block level button</button>
+  </div>
+                
+                
             </form>
         );
     }
