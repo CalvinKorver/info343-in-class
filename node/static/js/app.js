@@ -77,6 +77,36 @@ function fetchBars(latlng) {
     var marker = L.marker(latlng).addTo(map);
     //pan to our current location
     map.panTo(latlng);
+    var url = "/api/v1/search";
+    url += "?lat=" + latlng.lat;
+    url += "&lng=" + latlng.lng;
+
+    console.log("fetching", url);
+    fetch(url)
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log(data);
+            data.businesses.forEach(function(rec) {
+                var blatlng = L.latLng(rec.location.coordinate.latitude, rec.location.coordinate.longitude);
+                var marker = L.circleMarker(blatlng).addTo(map);
+
+                var divPopup = document.createElement("div");
+                var h2 = divPopup.appendChild(document.createElement("h2"));
+                h2.textContent = rec.name;
+                var img = divPopup.appendChild(document.createElement("img"));
+                img.src = rec.rating_img_url;
+                img.alt = "rating is " +rec.rating + "stars";
+
+                var imgPrev = divPopup.appendChild(document.createElement("img"));
+                imgPrev.src = rec.image_url;
+                imgPrev.alt = "preview image of " + rec.name);
+            });
+        })
+        .catch(function(err) {
+            console.error(err);
+        })
 
     //TODO: fetch the nearby bars
     //and add them to the map

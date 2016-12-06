@@ -23,7 +23,8 @@ var osmTiles = {
 //for a list of map styles supported by Mapbox, as well
 //as full documentation about their map tiles API
 var mapboxTiles = {
-    accessToken: "...paste your access token here...",
+    accessToken: "pk.eyJ1IjoiY2prb3J2ZXIiLCJhIjoiY2l2bXB0c29vMDAwMTJ0cnhsa3Nicm1naiJ9.OOAGGg_RhjJq3ozecHGKEw",
+
     url: "https://api.tiles.mapbox.com/v4/{style}/{z}/{x}/{y}.png?access_token={accessToken}",
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     styles: {
@@ -48,4 +49,57 @@ var seattleCoords = [47.61, -122.33];
 //default zoom level (0-18 for street maps)
 //other map styles may have different zoom ranges
 var defaultZoom = 13;
+
+var map = L.map(mapDiv).setView(seattleCoords, defaultZoom);
+L.tileLayer(mapboxTiles.url, {
+    attribution: mapboxTiles.attribution,
+    style: mapboxTiles.styles.satellite,
+    accessToken: mapboxTiles.accessToken
+}).addTo(map);
+
+function onPosition(position) {
+    console.log(position);
+    // Put marker on map where we are and pan the map over there
+    var latlng = [position.coords.latitude, position.coords.longitude];
+    var marker = L.marker(latlng).addTo(map);
+    map.panTo(latlng);
+}
+
+function onPositionError(err) {
+    console.error(err);
+    alert(err.message);
+}
+
+if (navigator && navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(onPosition, onPositionError,
+    {enableHighAccuracy: true});
+}
+
+fetch(seattle911API)
+    .then(function(response) {
+        return response.json();
+    })
+    
+    .then(function(data) {
+        console.log(data);
+        data.forEach(function(record) {
+            var latlng = [record.latitude, record.longitude];
+            var marker =  L.circleMarker(latlng, {
+                fillColor: "#F00",
+                color: "#F00",
+                fillOpacity: 0.2
+            }).addTo(map);
+            var html = "<h2>" + record.type + "</h2>";
+            html += "<p>" + record.address + "</p>"
+            marker.bindPopup(html);
+        });
+        // var latlong = []
+        // var marker = L.circleMarker(
+    })
+
+    .catch(function(err) {
+        console.log(err);
+        // alert(err.message);
+    });
+
 
