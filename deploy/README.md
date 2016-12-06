@@ -58,7 +58,7 @@ exit
 The version of git installed on the UW Student Web Hosts is very old, so it won't prompt you for a GitHub username and password if you try to clone a private repo. But you can include your GitHub username in the clone URL, and git will then prompt you for your password. Alter the clone URL like this, replacing `your-github-username` with your GitHub username:
 
 ```bash
-git clone https://your-github-username@github.com/path/to/your/private/repo
+git clone https://cjkorver@github.com/path/to/your/private/repo
 ```
 
 Notice how your GitHub username is added before `github.com` with a `@` character separator. This is similar to how you connected to the UW Web Host via `ssh`.
